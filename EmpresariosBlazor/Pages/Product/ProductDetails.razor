@@ -1,0 +1,39 @@
+﻿@page "/ProductDetails"
+@inject IProductService ProductService
+@using EmpresariosBlazor.Data.Product
+
+<h3>ProductDetails</h3>
+
+
+<EditForm Model="@product">
+    <table class="table">
+        <tr>
+            <td>Id:</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="product.IdProduct"/></td>
+        </tr>
+        <tr>
+            <td>product:</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="product.ProductName"/></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="save" @onclick="SaveProduct"/>
+                <input type="button" value="Cancel"/>
+
+            </td>
+        </tr>
+       
+
+    </table>
+</EditForm>
+
+
+@code {
+    private Product product  = new Product();
+
+    protected async Task SaveProduct()
+    {
+        await ProductService.SaveProduct(product);
+    }
+
+}
